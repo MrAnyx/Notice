@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/MrAnyx/Notice/master/public/images/Notice.svg" width="150"></p>
+<p align="center"><img alt="Notice logo" src="https://raw.githubusercontent.com/MrAnyx/Notice/master/public/images/Notice.svg" width="150"></p>
 
 ## About Notice
 
