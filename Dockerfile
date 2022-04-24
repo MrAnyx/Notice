@@ -8,20 +8,11 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
 
-RUN apt update && \
-  apt install -yqq nano nodejs npm
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+
+RUN apt install -yqq nano nodejs
 
 RUN npm install -g yarn
-
-# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# RUN apt-get update \
-#     && apt-get install -y --no-install-recommends \
-#     apt-utils libicu-dev g++ unzip libpng-dev libxml2-dev libzip-dev libonig-dev libxslt-dev ca-certificates apt-transport-https nano
-
-# RUN docker-php-ext-configure intl
-# RUN docker-php-ext-install pdo pdo_mysql gd opcache intl zip calendar dom mbstring xsl
-# RUN pecl install apcu && docker-php-ext-enable apcu
 
 RUN chmod -R 0777 /var/www/
 
