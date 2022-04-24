@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Wiki 📝
+    url: https://github.com/MrAnyx/Notice/wiki
+    about: Check out the official docs for answers to common questions and learn how to contribute
+  - name: Questions & discussions 🤔
+    url: https://github.com/MrAnyx/Notice/discussions
+    about: Ask questions, request features & discuss

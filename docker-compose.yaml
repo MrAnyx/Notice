@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+
+   database:
+      container_name: notice-database
+      image: mariadb
+      restart: always
+      environment:
+         MYSQL_ROOT_PASSWORD: password
+      volumes:
+         - notice-data:/var/lib/mariadb
+      networks:
+         - dev
+
+   adminer:
+      container_name: notice-adminer
+      image: adminer
+      restart: always
+      ports:
+         - 8082:8080
+      networks:
+         - dev
+
+   maildev:
+      image: maildev/maildev
+      container_name: notice-mail
+      command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+      ports:
+         - 8081:80
+      restart: always
+      networks:
+         - dev
+   
+   web:
+      container_name: notice-web
+      restart: always
+      build:
+         context: .
+         dockerfile: Dockerfile
+      ports:
+         - 8080:80
+      volumes:
+         - ./:/var/www
+         # - ./apache:/etc/apache2/sites-enabled
+      networks:
+         - dev
+      depends_on:
+         - database
+
+volumes:
+  notice-data:
+   
+networks:
+   dev:
