@@ -1,12 +1,11 @@
 {
-  "name": "@notice/ui",
+  "name": "@notice/ui-lit",
   "version": "1.0.0",
   "main": "index.js",
   "license": "AGPL-3.0",
   "private": true,
   "peerDependencies": {
-    "sass": "^1.50.1",
-    "vue": "^3.2.33"
+    "lit": "^2.2.2"
   },
   "engines": {
     "node": ">=16",
