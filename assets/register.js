@@ -1,7 +1,7 @@
 import { defineCustomElement } from "vue";
 
-import { HelloWorld } from "@notice/ui-vue";
-import { SimpleGreeting } from "@notice/ui-lit";
+import HelloWorld from "./components/vue/HelloWorld.ce.vue";
+import SimpleGreeting from "./components/lit/SimpleGreeting";
 
 /* ------------------------------------------------------------------------- */
 /*                              Vuejs components                             */

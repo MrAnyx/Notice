@@ -1,11 +1,5 @@
 {
-  "workspaces": [
-    "@notice/ui-vue",
-    "@notice/ui-lit"
-  ],
   "devDependencies": {
-    "@notice/ui-vue": "file:./components/vue",
-    "@notice/ui-lit": "file:./components/lit",
     "@symfony/webpack-encore": "^1.8.1",
     "core-js": "^3.21.1",
     "eslint": "^8.10.0",
@@ -21,7 +15,6 @@
     "sass-loader": "^12.6.0",
     "vue": "^3.2.33",
     "vue-loader": "^16.8.3",
-    "webpack": "^5.70.0",
     "webpack-notifier": "^1.15.0"
   },
   "license": "AGPL-3.0",
@@ -34,7 +27,6 @@
   },
   "engines": {
     "node": ">=16",
-    "npm": ">=8.5",
-    "yarn": ">=1.22"
+    "npm": ">=8.5"
   }
 }
