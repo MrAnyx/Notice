@@ -1,7 +1,5 @@
 {
-  "workspaces": ["@notice/ui"],
   "devDependencies": {
-    "@notice/ui": "file:./ui",
     "@symfony/webpack-encore": "^1.8.1",
     "core-js": "^3.21.1",
     "eslint": "^8.10.0",
@@ -10,13 +8,13 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
+    "lit": "^2.2.2",
     "prettier": "^2.5.1",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.50.1",
     "sass-loader": "^12.6.0",
     "vue": "^3.2.33",
     "vue-loader": "^16.8.3",
-    "webpack": "^5.70.0",
     "webpack-notifier": "^1.15.0"
   },
   "license": "AGPL-3.0",
@@ -29,7 +27,6 @@
   },
   "engines": {
     "node": ">=16",
-    "npm": ">=8.5",
-    "yarn": ">=1.22"
+    "npm": ">=8.5"
   }
 }
