@@ -1,0 +1,23 @@
+{
+    "editor.tabSize": 4,
+    "[javascript][vue]": {
+        "editor.formatOnSave": false
+    },
+    "[json][jsonc][yaml][twig]": {
+        "editor.formatOnSave": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "files.eol": "\n",
+
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": ".php",
+                "isAsync": true,
+                "cmd": "vendor/bin/php-cs-fixer fix ${file}"
+            }
+        ]
+    }
+}
