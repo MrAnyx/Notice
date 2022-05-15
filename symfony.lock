@@ -572,9 +572,6 @@
             "templates/base.html.twig"
         ]
     },
-    "symfony/ux-swup": {
-        "version": "v2.1.1"
-    },
     "symfony/validator": {
         "version": "6.0",
         "recipe": {
