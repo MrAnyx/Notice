@@ -1,5 +1,5 @@
 import Swup from "swup";
-import "./styles/swup.scss";
+import "./styles/vendor/_swup.scss";
 
 setInterval(() => {
     console.log("once");

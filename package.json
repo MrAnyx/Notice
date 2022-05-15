@@ -29,5 +29,10 @@
     "engines": {
         "node": ">=16",
         "npm": ">=8.5"
+    },
+    "dependencies": {
+        "feather-icons": "^4.29.0",
+        "normalize.css": "^8.0.1",
+        "tippy.js": "^6.3.7"
     }
 }

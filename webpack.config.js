@@ -23,6 +23,7 @@ Encore
     .addEntry("swup", "./assets/swup.js")
     .addEntry("base", "./assets/base.js")
     .addEntry("register", "./assets/register.js")
+    .addEntry("header", "./assets/header.js")
 
     .enableVueLoader()
 

@@ -11,12 +11,6 @@ export default {
             default: "World",
         },
     },
-
-
-
-
-
-    
 };
 </script>
 

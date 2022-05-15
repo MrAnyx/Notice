@@ -4,30 +4,49 @@
 		<meta charset="UTF-8">
 		<title>
 			{% block title %}{% endblock %}
-			| Notice
+			- Notice
 		</title>
 
 		<link rel="icon" href="{{asset('images/Notice.svg')}}" type="image/svg+xml">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('base') }}
 			{{ encore_entry_link_tags('swup') }}
+			{{ encore_entry_link_tags('header') }}
 		{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('register') }}
-			{{ encore_entry_script_tags('swup') }}
-		{% endblock %}
 	</head>
 	<body>
-		<ul>
-			<li>
-				<a href="{{url('app_home')}}">Home</a>
-			</li>
-			<li>
-				<a href="{{url('app_test')}}">Test</a>
-			</li>
-		</ul>
+
+		<header id="header">
+			<div id="header-brand">
+				<img src="{{asset('images/Notice.svg')}}" alt="Notice logo">
+				<span>Notice</span>
+			</div>
+
+			<div id="header-search-bar">
+				test
+			</div>
+
+			<div id="header-social">
+				<div id="social-items">
+					<notification-icon id="notification-icon"></notification-icon>
+					<div id="profile-image-container">
+						<img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="">
+					</div>
+				</div>
+			</div>
+
+		</header>
+
+
 		<main id="swup"> {% block body %}{% endblock %}
 			</main>
+
+			{% block javascripts %}
+				{{ encore_entry_script_tags('base') }}
+				{{ encore_entry_script_tags('register') }}
+				{{ encore_entry_script_tags('swup') }}
+				{{ encore_entry_script_tags('header') }}
+			{% endblock %}
 		</body>
 	</html>

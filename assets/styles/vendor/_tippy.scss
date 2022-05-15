@@ -1,0 +1,15 @@
+.tippy-box[data-theme~="notification"] {
+    margin: 0;
+    padding: 0;
+    border-radius: 3px;
+    background-color: var(--white);
+    border: 1.5px solid var(--light-medium);
+    width: fit-content;
+    max-width: unset;
+
+    & * {
+        width: fit-content;
+        margin: 0;
+        padding: 0;
+    }
+}
