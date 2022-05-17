@@ -8,19 +8,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
+    #[Route('/', name: 'app_feed')]
+    public function feed(): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        return $this->render('user/feed.html.twig');
     }
 
-    #[Route('/test', name: 'app_test')]
-    public function test(): Response
+    #[Route('/hashtags', name: 'app_hashtags')]
+    public function hashtags(): Response
     {
-        return $this->render('home/test.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        return $this->render('user/hashtags.html.twig');
+    }
+
+    #[Route('/collections', name: 'app_collections')]
+    public function collections(): Response
+    {
+        return $this->render('user/collections.html.twig');
     }
 }

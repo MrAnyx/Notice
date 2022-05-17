@@ -8,11 +8,11 @@
 		</title>
 
 		<link rel="icon" href="{{asset('images/Notice.svg')}}" type="image/svg+xml">
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('base') }}
-			{{ encore_entry_link_tags('swup') }}
-			{{ encore_entry_link_tags('header') }}
-		{% endblock %}
+
+		{{ encore_entry_link_tags('base') }}
+		{{ encore_entry_link_tags('swup') }}
+		{{ encore_entry_link_tags('header') }}
+		{% block stylesheets %}{% endblock %}
 
 	</head>
 	<body>
@@ -35,18 +35,15 @@
 					</div>
 				</div>
 			</div>
-
 		</header>
-
 
 		<main id="swup"> {% block body %}{% endblock %}
 			</main>
 
-			{% block javascripts %}
-				{{ encore_entry_script_tags('base') }}
-				{{ encore_entry_script_tags('register') }}
-				{{ encore_entry_script_tags('swup') }}
-				{{ encore_entry_script_tags('header') }}
-			{% endblock %}
+			{{ encore_entry_script_tags('base') }}
+			{{ encore_entry_script_tags('register') }}
+			{{ encore_entry_script_tags('swup') }}
+			{{ encore_entry_script_tags('header') }}
+			{% block javascripts %}{% endblock %}
 		</body>
 	</html>

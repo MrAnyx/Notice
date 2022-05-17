@@ -1,0 +1,11 @@
+#main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#page-content {
+    flex: 1;
+    max-height: calc(100vh - var(--header-height));
+    overflow-x: auto;
+}

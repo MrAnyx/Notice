@@ -24,6 +24,8 @@ Encore
     .addEntry("base", "./assets/base.js")
     .addEntry("register", "./assets/register.js")
     .addEntry("header", "./assets/header.js")
+    .addEntry("navbar", "./assets/navbar.js")
+    .addEntry("navbar-layout", "./assets/navbar-layout.js")
 
     .enableVueLoader()
 

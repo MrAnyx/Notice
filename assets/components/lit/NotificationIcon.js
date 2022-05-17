@@ -55,10 +55,10 @@ export default class NotificationIcon extends LitElement {
      */
     connectedCallback() {
         super.connectedCallback();
-        this.retrieveNotifications();
+        this.retrieveNotificationCounter();
         this.notificationFetchCallInterval = setInterval(() => {
-            this.retrieveNotifications();
-        }, 10000);
+            this.retrieveNotificationCounter();
+        }, 1000);
     }
 
     /**
@@ -73,9 +73,11 @@ export default class NotificationIcon extends LitElement {
      * Is used to retrieve the notification state.
      * It uses the fetch API to make a call to the API to chck if the user has new notification
      */
-    retrieveNotifications() {
+    retrieveNotificationCounter() {
         // Use the fetch API to retrieve new notification
-        console.log("Get notif");
+        if (!this.active) {
+            console.log("Get notif");
+        }
     }
 
     /**
@@ -83,6 +85,7 @@ export default class NotificationIcon extends LitElement {
      */
     click() {
         this.active = !this.active;
+        this.hasNewNotification = false;
     }
 
     render() {
