@@ -3,7 +3,9 @@ import * as feather from "feather-icons";
 
 import "./styles/vendor/_swup.scss";
 
-const swup = new Swup(); // only this line when included with script tag
+const swup = new Swup({
+    containers: ["#page-content", "#sidebar"],
+});
 
 feather.replace();
 

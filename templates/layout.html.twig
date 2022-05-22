@@ -7,11 +7,13 @@
 			- Notice
 		</title>
 
-		<link rel="icon" href="{{asset('images/Notice.svg')}}" type="image/svg+xml">
+		<link rel="icon" id="favicon" href="{{asset('images/Notice-favicon.svg')}}" type="image/svg+xml">
 
 		{{ encore_entry_link_tags('base') }}
 		{{ encore_entry_link_tags('swup') }}
 		{{ encore_entry_link_tags('header') }}
+		{{ encore_entry_link_tags('navbar-layout') }}
+		{{ encore_entry_link_tags('navbar') }}
 		{% block stylesheets %}{% endblock %}
 
 	</head>
@@ -24,7 +26,9 @@
 			</div>
 
 			<div id="header-search-bar">
-				test
+				<a href="{{url('app_feed')}}">feed</a>
+				<a href="{{url('app_hashtags')}}">hashtags</a>
+				<a href="{{url('app_collections')}}">collections</a>
 			</div>
 
 			<div id="header-social">
@@ -37,8 +41,32 @@
 			</div>
 		</header>
 
-		<main id="swup"> {% block body %}{% endblock %}
-			</main>
+		<div id="main">
+			<aside id="sidebar">
+				<div id="sidebar-section-content">
+					<h4 class="sidebar-subheader">Content</h4>
+					<div class="sidebar-links">
+						<a id="link-feed" href="{{url('app_feed')}}" class="sidebar-link {{app.request.get('_route') == 'app_feed' ? 'active' : ''}}">
+							<i data-feather="list"></i>
+							Feed
+						</a>
+						<a href="{{url('app_hashtags')}}" class="sidebar-link {{app.request.get('_route') == 'app_hashtags' ? 'active' : ''}}">
+							<i data-feather="hash"></i>
+							Hashtags
+						</a>
+						<a href="{{url('app_collections')}}" class="sidebar-link {{app.request.get('_route') == 'app_collections' ? 'active' : ''}}">
+							<i data-feather="bookmark"></i>
+							Collections
+						</a>
+					</div>
+				</div>
+				<div id="app-version">{{version.currentVersion}}</div>
+			</aside>
+
+			<div id="page-content" class="transition-fade"> {% block body %}{% endblock %}
+				</div>
+			</div>
+
 
 			{{ encore_entry_script_tags('base') }}
 			{{ encore_entry_script_tags('register') }}

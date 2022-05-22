@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Logo" transform="matrix(1.56736,0,0,1.56736,-136.383,35.277)">
+        <g transform="matrix(-1,-1.22465e-16,1.22465e-16,-1,812.044,593)">
+            <path d="M646,33L646,299C646,299 650.679,395.421 563,468C472.664,542.778 311,503 311,503C311,503 345.293,476.801 376,422C408.263,364.423 403,300 403,300C403,300 391.148,194.648 474,105C538.954,34.718 646,33 646,33Z" style="fill:url(#_Linear1);"/>
+            <g>
+                <clipPath id="_clip2">
+                    <path d="M646,33L646,299C646,299 650.679,395.421 563,468C472.664,542.778 311,503 311,503C311,503 345.293,476.801 376,422C408.263,364.423 403,300 403,300C403,300 391.148,194.648 474,105C538.954,34.718 646,33 646,33Z"/>
+                </clipPath>
+                <g clip-path="url(#_clip2)">
+                    <g transform="matrix(-1,1.22465e-16,-1.22465e-16,-1,812.044,593)">
+                        <path d="M166,560C166,560 288,507.933 288,299C288,90.067 446,33 446,33L303,8L93,70L93,392L166,560Z" style="fill:url(#_Linear3);"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <path d="M646,33L646,299C646,299 650.679,395.421 563,468C472.664,542.778 315,509 315,509C315,509 352.293,483.801 379,424C405.914,363.736 403,300 403,300C403,300 394.148,199.648 477,110C541.954,39.718 646,33 646,33Z" style="fill:url(#_Linear4);"/>
+        <g>
+            <clipPath id="_clip5">
+                <path d="M646,33L646,299C646,299 650.679,395.421 563,468C472.664,542.778 315,509 315,509C315,509 352.293,483.801 379,424C405.914,363.736 403,300 403,300C403,300 394.148,199.648 477,110C541.954,39.718 646,33 646,33Z"/>
+            </clipPath>
+            <g clip-path="url(#_clip5)">
+                <path d="M646,33C646,33 512,98.668 512,299C512,499.332 358,560 358,560L710,582L738,404L710,110L646,33Z" style="fill:url(#_Linear6);"/>
+            </g>
+        </g>
+    </g>
+    <defs>
+        <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(259,-532,532,259,347.044,534)"><stop offset="0" style="stop-color:rgb(71,214,249);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(31,105,255);stop-opacity:1"/></linearGradient>
+        <linearGradient id="_Linear3" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(167.522,-491,491,167.522,166,560)"><stop offset="0" style="stop-color:rgb(36,121,255);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(72,221,246);stop-opacity:1"/></linearGradient>
+        <linearGradient id="_Linear4" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(332.044,-508,508,332.044,314,541)"><stop offset="0" style="stop-color:rgb(244,204,73);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(249,87,155);stop-opacity:1"/></linearGradient>
+        <linearGradient id="_Linear6" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(217,-541,541,217,458,582)"><stop offset="0" style="stop-color:rgb(244,209,72);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(249,101,146);stop-opacity:1"/></linearGradient>
+    </defs>
+</svg>

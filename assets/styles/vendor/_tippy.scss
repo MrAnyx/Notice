@@ -7,8 +7,7 @@
     width: fit-content;
     max-width: unset;
 
-    & * {
-        width: fit-content;
+    & .tippy-content {
         margin: 0;
         padding: 0;
     }
