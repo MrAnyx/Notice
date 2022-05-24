@@ -20,6 +20,7 @@ export default class NotificationIcon extends LitElement {
             height: 20px;
             color: var(--light-dark);
             transition: color 0.2s ease-in-out;
+            vertical-align: middle;
         }
 
         #notification-icon-svg:hover {
@@ -78,6 +79,14 @@ export default class NotificationIcon extends LitElement {
         if (!this.active) {
             console.log("Get notif");
         }
+    }
+
+    enableNotificationCheck() {
+        this.active = true;
+    }
+
+    disableNotificationCheck() {
+        this.active = false;
     }
 
     /**

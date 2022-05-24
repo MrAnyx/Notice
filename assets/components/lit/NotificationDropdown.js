@@ -1,4 +1,4 @@
-import { css, html, LitElement } from "lit";
+import { html, LitElement } from "lit";
 
 export default class NotificationDropdown extends LitElement {
     static properties = {
@@ -46,93 +46,6 @@ export default class NotificationDropdown extends LitElement {
         ];
     }
 
-    static styles = css`
-        #notification-dropdown {
-            width: 350px;
-        }
-
-        #notification-dropdown-title {
-            padding: 10px 18px;
-            border-bottom: 2px solid var(--light-medium);
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        #notification-dropdown-content {
-            color: var(--text);
-            max-height: 360px;
-            overflow-y: auto;
-        }
-
-        .notification-item-container:not(.notification-last) {
-            border-bottom: 2px solid var(--light-soft);
-        }
-
-        .notification-item {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            column-gap: 12px;
-            padding: 10px 18px;
-        }
-
-        .notification-photo {
-            width: 40px;
-            height: 40px;
-            overflow: hidden;
-            border-radius: 50%;
-        }
-
-        .notification-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .notification-content {
-            flex: 1;
-        }
-
-        #notification-empty-container {
-            width: 100%;
-            height: 340px;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            row-gap: 15px;
-            user-select: none;
-        }
-
-        #empty-image {
-            width: 135px;
-            height: auto;
-            opacity: 0.5;
-        }
-
-        #empty-notification-title {
-            margin: 0;
-            font-size: 16px;
-            color: var(--text);
-        }
-
-        #empty-notification-message {
-            margin: 0;
-            color: var(--dark-soft);
-            padding: 0 30px;
-            text-align: center;
-        }
-
-        #empty-notification-preferences-link {
-            color: var(--white);
-            background-color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-        }
-    `;
-
     renderEmptyState() {
         return html`
             <div id="notification-empty-container">
@@ -161,6 +74,7 @@ export default class NotificationDropdown extends LitElement {
         )}`;
     }
 
+    // https://dribbble.com/shots/17272091-Notification-Dropdown-for-Earth-Fund
     render() {
         return html`
             <div id="notification-dropdown">
