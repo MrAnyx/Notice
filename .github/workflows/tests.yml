@@ -18,13 +18,11 @@ jobs:
               with:
                   node-version: 16
 
-            - uses: getong/mariadb-action@v1.1
-              with:
-                  mariadb version: "10.7.3" # Optional, default value is "latest". The version of the MariaDB
-                  mysql database: "notice" # Optional, default value is "test". The specified database which will be create
-                  mysql root password: "password" # Required if "mysql user" is empty, default is empty. The root superuser password
-                  mysql user: "root" # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-                  mysql password: "password" # Required if "mysql user" exists. The password for the "mysql user"
+            - name: Build docker compose file
+              run: docker-compose build
+
+            - name: Run docker compose services
+              run: docker-compose up -d
 
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
@@ -49,9 +47,6 @@ jobs:
 
             - name: Copy test files
               run: cp .env.test .env
-
-            - name: Create the database
-              run: php bin/console doctrine:database:create --env=test --no-interaction
 
             - name: Load migrations
               run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
