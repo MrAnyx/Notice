@@ -29,12 +29,6 @@ jobs:
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
 
-            - name: Build docker images
-              run: docker-compose build
-
-            - name: Run docker image
-              run: docker-compose up -d
-
             - name: Cache Composer packages
               id: composer-cache
               uses: actions/cache@v2
