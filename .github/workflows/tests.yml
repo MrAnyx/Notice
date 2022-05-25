@@ -53,6 +53,9 @@ jobs:
             - name: Build components
               run: npm run build
 
+            - name: Copy test files
+              run: cp .env.test .env
+
             - name: Create the database
               run: php bin/console doctrine:database:create --env=test --no-interaction
 
