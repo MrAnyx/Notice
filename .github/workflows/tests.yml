@@ -49,6 +49,12 @@ jobs:
             - name: Install dependencies
               run: composer install --prefer-dist --no-progress --no-scripts
 
+            - name: Install node dependencies
+              run: npm install
+
+            - name: Build components
+              run: npm run build
+
             - name: Run static tests
               run: composer run-script stan-github
 
