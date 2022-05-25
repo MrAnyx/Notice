@@ -54,13 +54,13 @@ jobs:
               run: npm run build
 
             - name: Create the database
-              run: bin/console doctrine:database:create --env=test --no-interaction
+              run: php bin/console doctrine:database:create --env=test --no-interaction
 
             - name: Load migrations
-              run: bin/console doctrine:migrations:migrate --env=test --no-interaction
+              run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
             - name: Load fixtures
-              run: bin/console doctrine:fixtures:load --env=test --group=TestFixtures --no-interaction
+              run: php bin/console doctrine:fixtures:load --env=test --group=TestFixtures --no-interaction
 
             - name: Run static tests
               run: composer run-script stan-github
