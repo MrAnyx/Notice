@@ -20,9 +20,7 @@ jobs:
 
             - uses: getong/mariadb-action@v1.1
               with:
-                  character set server: "utf8" # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
-                  collation server: "utf8_general_ci" # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
-                  mariadb version: "10.7" # Optional, default value is "latest". The version of the MariaDB
+                  mariadb version: "10.7.3" # Optional, default value is "latest". The version of the MariaDB
                   mysql database: "notice" # Optional, default value is "test". The specified database which will be create
                   mysql root password: "password" # Required if "mysql user" is empty, default is empty. The root superuser password
                   mysql user: "root" # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
@@ -54,6 +52,15 @@ jobs:
 
             - name: Build components
               run: npm run build
+
+            - name: Create the database
+              run: bin/console doctrine:database:create --env=test --no-interaction
+
+            - name: Load migrations
+              run: bin/console doctrine:migrations:migrate --env=test --no-interaction
+
+            - name: Load fixtures
+              run: bin/console doctrine:fixtures:load --env=test --group=TestFixtures --no-interaction
 
             - name: Run static tests
               run: composer run-script stan-github
