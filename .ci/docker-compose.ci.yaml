@@ -12,3 +12,9 @@ services:
          - notice-data:/var/lib/mariadb
       networks:
          - dev
+
+volumes:
+  notice-data:
+   
+networks:
+   dev:
