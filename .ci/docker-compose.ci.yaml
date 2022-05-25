@@ -1,7 +1,6 @@
 version: "3.8"
 
 services:
-
    database:
       container_name: notice-database
       image: mariadb
