@@ -9,8 +9,8 @@ on:
 jobs:
     tests:
         runs-on: ubuntu-latest
-		env:
-      		COMPOSE_FILE: docker-compose.yml
+        env:
+            COMPOSE_FILE: docker-compose.yml
 
         steps:
             - uses: actions/checkout@v2
@@ -18,8 +18,8 @@ jobs:
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
 
-			- name: Build docker images
-			  run: docker-compose up -d
+            - name: Build docker images
+              run: docker-compose up -d
 
             # - name: Cache Composer packages
             #   id: composer-cache
@@ -38,5 +38,3 @@ jobs:
 
             - name: Run unit tests
               run: docker-compose exec notice-web composer run-script test
-
-			  
