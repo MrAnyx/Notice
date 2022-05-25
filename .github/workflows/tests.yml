@@ -1,36 +1,42 @@
 name: Unit & Static Tests
 
 on:
-  push:
-    branches: [ master, dev ]
-  pull_request:
-    branches: [ master, dev ]
+    push:
+        branches: [master, dev]
+    pull_request:
+        branches: [master, dev]
 
 jobs:
-  build:
+    tests:
+        runs-on: ubuntu-latest
+		env:
+      		COMPOSE_FILE: docker-compose.yml
 
-    runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
 
-    steps:
-    - uses: actions/checkout@v2
+            - name: Validate composer.json and composer.lock
+              run: composer validate --strict
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+			- name: Build docker images
+			  run: docker-compose up -d
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+            # - name: Cache Composer packages
+            #   id: composer-cache
+            #   uses: actions/cache@v2
+            #   with:
+            #       path: vendor
+            #       key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+            #       restore-keys: |
+            #           ${{ runner.os }}-php-
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-scripts
+            - name: Install dependencies
+              run: docker-compose exec notice-web composer install --prefer-dist --no-progress --no-scripts
 
-    - name: Run static tests
-      run: composer run-script stan-github
-      
-    - name: Run unit tests
-      run: composer run-script test
+            - name: Run static tests
+              run: docker-compose exec notice-web composer run-script stan-github
+
+            - name: Run unit tests
+              run: docker-compose exec notice-web composer run-script test
+
+			  
