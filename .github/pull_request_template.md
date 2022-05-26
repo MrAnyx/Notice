@@ -5,6 +5,7 @@
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Major update
+- [ ] Minor update
 
 ## Screenshots
 
