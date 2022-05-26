@@ -7,10 +7,11 @@
 
     --dark: #00334e;
     --dark-medium: #393e46;
-    --dark-light: #52616b;
+    --dark-light: #6d7683;
     --dark-soft: #8c99a1;
 
     --text: #41454b;
+    --soft-text: #bac0ca;
 
     --primary: #5c81fc;
     --secondary: #00adb5;
@@ -24,4 +25,10 @@
     --soft-blue-background-hover: #eeeeee;
 
     --header-height: 58px;
+
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
+    --xxl: 1400px;
 }
