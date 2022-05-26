@@ -43,7 +43,9 @@ jobs:
               run: composer validate --strict
 
             - name: Copy test files
-              run: cp .env.test .env
+              run: |
+                  cp .ci/.env.test .env
+                  cp .ci/.env.test .env.test
 
             - name: Cache Composer packages
               id: composer-cache
