@@ -1,0 +1,60 @@
+#sidebar {
+    width: calc(280px - 28px - 28px);
+    height: calc(100vh - var(--header-height) - 36px - 36px);
+    background-color: var(--light);
+    border-right: 2px solid var(--light-medium);
+    padding: 36px 28px;
+    position: relative;
+    user-select: none;
+}
+
+.sidebar-subheader {
+    font-size: 11px;
+    color: var(--soft-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.sidebar-link {
+    color: var(--soft-blue-dark);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 4px;
+    padding: 8px 13px;
+    font-weight: 500;
+    line-height: 100%; /* To center text compared to the icon */
+
+    &:hover {
+        background-color: var(--soft-blue-background-hover);
+    }
+
+    &.active {
+        background-color: var(--soft-blue-background);
+        color: var(--primary);
+        font-weight: 600;
+
+        & svg {
+            stroke-width: 2.5px;
+        }
+    }
+}
+
+#app-version {
+    text-align: center;
+    color: var(--light-medium);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

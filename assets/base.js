@@ -1,1 +1,2 @@
-import "./styles/app.scss";
+import "normalize.css";
+import "./styles/base/_global.scss";

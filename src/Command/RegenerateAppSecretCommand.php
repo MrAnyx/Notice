@@ -14,14 +14,13 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class RegenerateAppSecretCommand extends Command
 {
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
         $a = '0123456789abcdefghijklmnopqrstuvwxyz';
         $secret = '';
-        for ($i = 0; $i < 32; $i++) {
+        for ($i = 0; $i < 32; ++$i) {
             $secret .= $a[rand(0, 15)];
         }
 

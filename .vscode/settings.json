@@ -1,0 +1,27 @@
+{
+    "editor.tabSize": 4,
+    "[javascript][vue]": {
+        "editor.formatOnSave": false
+    },
+    "[json][jsonc][yaml][css][scss][twig]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[twig]": {
+        "editor.defaultFormatter": "mblode.twig-language-2",
+        "editor.formatOnSave": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "files.eol": "\n",
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": ".php",
+                "isAsync": true,
+                "cmd": "./vendor/bin/phpcbf --standard=PSR12 ${file}"
+            }
+        ]
+    }
+}
