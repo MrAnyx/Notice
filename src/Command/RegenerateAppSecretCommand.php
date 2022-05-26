@@ -20,7 +20,7 @@ class RegenerateAppSecretCommand extends Command
 
         $a = '0123456789abcdefghijklmnopqrstuvwxyz';
         $secret = '';
-        for ($i = 0; $i < 32; $i++) {
+        for ($i = 0; $i < 32; ++$i) {
             $secret .= $a[rand(0, 15)];
         }
 

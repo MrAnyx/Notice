@@ -31,7 +31,7 @@ class AppVersionServiceTest extends KernelTestCase
         $kernel = $container->get(KernelInterface::class);
         $appVersion = $service->currentVersion();
 
-        $this->assertEquals($appVersion, file_get_contents($kernel->getProjectDir().'/VERSION'));
+        $this->assertEquals($appVersion, file_get_contents($kernel->getProjectDir() . '/VERSION'));
     }
 
     public function testSearchByName()

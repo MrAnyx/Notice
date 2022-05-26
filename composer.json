@@ -49,11 +49,11 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "friendsofphp/php-cs-fixer": "^3.8",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-parallel": "^1.0",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
         "symfony/debug-bundle": "6.0.*",
@@ -109,7 +109,9 @@
         "test-cov": "@test  --coverage --min=80",
         "stan-default": "vendor/bin/phpstan analyse -c phpstan.neon",
         "stan": "@stan-default --ansi --error-format=table",
-        "stan-github": "@stan-default --error-format=github --quiet"
+        "stan-github": "@stan-default --error-format=github --quiet",
+        "cs-check": "./vendor/bin/phpcs --standard=PSR12 ./src ./tests",
+        "cs-fix": "./vendor/bin/phpcbf --standard=PSR12 ./src ./tests"
     },
     "conflict": {
         "symfony/symfony": "*"

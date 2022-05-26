@@ -15,6 +15,6 @@ class AppVersionService
 
     public function currentVersion(): string
     {
-        return file_get_contents($this->appKernel->getProjectDir().'/VERSION');
+        return file_get_contents($this->appKernel->getProjectDir() . '/VERSION');
     }
 }
