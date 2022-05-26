@@ -13,7 +13,7 @@ jobs:
             fail-fast: true
             matrix:
                 php-versions: ["8.1"]
-        
+
         services:
             database:
                 image: mariadb
@@ -25,70 +25,70 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v3
-                with:
-                    node-version: 16
-            
+              with:
+                  node-version: 16
+
             - name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: ${{ matrix.php-versions }}
-                    extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, opcache, zip, pcov
-                env:
-                    update: true
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, opcache, zip, pcov
+              env:
+                  update: true
 
             - name: Check php version
-                run: php -v
+              run: php -v
 
             - name: Validate composer.json and composer.lock
-                run: composer validate --strict
+              run: composer validate --strict
 
             - name: Cache Composer packages
-                id: composer-cache
-                uses: actions/cache@v2
-                with:
-                    path: vendor
-                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: |
-                        ${{ runner.os }}-php-
+              id: composer-cache
+              uses: actions/cache@v2
+              with:
+                  path: vendor
+                  key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-php-
 
             - name: Install dependencies
-                run: composer install --ansi --prefer-dist --no-interaction --no-progress
+              run: composer install --ansi --prefer-dist --no-interaction --no-progress
 
             - name: Check the Symfony console
-                run: php bin/console about
+              run: php bin/console about
 
             - name: Install node dependencies
-                run: npm install --silent
+              run: npm install --silent
 
             - name: Build components
-                run: npm run build --silent
+              run: npm run build --silent
 
             - name: Copy test files
-                run: cp .env.test .env
+              run: cp .env.test .env
 
             - name: Doctrine cache clear
-                run: php bin/console doctrine:cache:clear-metadata 
-            
+              run: php bin/console doctrine:cache:clear-metadata
+
             - name: Create database
-                run: php bin/console doctrine:database:create --if-not-exists --env=test --no-interaction
+              run: php bin/console doctrine:database:create --if-not-exists --env=test --no-interaction
 
             - name: Drop previous schema
-                run: php bin/console doctrine:schema:drop --force --env=test --no-interaction
+              run: php bin/console doctrine:schema:drop --force --env=test --no-interaction
 
             - name: Load migrations
-                run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
+              run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
             - name: Validate database schema
-                run: php bin/console doctrine:schema:validate
+              run: php bin/console doctrine:schema:validate
 
             - name: Load fixtures
-                run: php bin/console doctrine:fixtures:load --env=test --group=TestFixtures --no-interaction
+              run: php bin/console doctrine:fixtures:load --env=test --group=TestFixtures --no-interaction
 
             - name: Run static tests
-                run: composer run stan-github
+              run: composer run stan-github
 
             - name: Run CS tests
-                run: composer run cs-check
+              run: composer run cs-check
 
             - name: Run unit tests
-                run: composer run test
+              run: composer run test
