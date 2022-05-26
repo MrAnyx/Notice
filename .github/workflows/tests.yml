@@ -42,6 +42,9 @@ jobs:
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
 
+            - name: Copy test files
+              run: cp .env.test .env
+
             - name: Cache Composer packages
               id: composer-cache
               uses: actions/cache@v2
@@ -62,9 +65,6 @@ jobs:
 
             - name: Build components
               run: npm run build --silent
-
-            - name: Copy test files
-              run: cp .env.test .env
 
             - name: Doctrine cache clear
               run: php bin/console doctrine:cache:clear-metadata
