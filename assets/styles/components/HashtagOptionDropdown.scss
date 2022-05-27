@@ -1,0 +1,16 @@
+#trending-option-dropdown-container {
+    .option-link {
+        text-decoration: none;
+        padding: 6px 14px;
+        display: flex;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        align-items: center;
+        column-gap: 10px;
+        color: var(--dark-light);
+
+        &:hover {
+            background-color: var(--soft-danger);
+            color: var(--danger);
+        }
+    }
+}

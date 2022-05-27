@@ -1,4 +1,6 @@
 import "./styles/layout/header.scss";
+import "./styles/components/NotificationDropdown.scss";
+import "./styles/components/ProfileDropdown.scss";
 
 import "tippy.js/dist/tippy.css";
 import "./styles/vendor/_tippy.scss";

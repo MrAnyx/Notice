@@ -26,7 +26,7 @@
 			</div>
 
 			<div id="header-search-bar">
-				bonjoru
+				Search
 			</div>
 
 			<div id="header-social">
@@ -70,11 +70,16 @@
 
 
 				<div id="sidebar-trending">
-					<h3 id="trends-title">Current trends</h3>
+					<div id="trends-title-container">
+						<h3 id="trends-title">Current trends</h3>
+						<span id="trends-period">Last 24h
+							<i data-feather="chevron-down" id="trends-period-icon"></i>
+						</span>
+					</div>
 
 					<div id="trends-hashtags">
 
-						{% for i in 0..5 %}
+						{% for i in 1..10 %}
 							<div class="trends-hashtag">
 								<div class="left">
 									<div class="name">#nodejs</div>
@@ -88,6 +93,8 @@
 							</div>
 						{% endfor %}
 
+						<a href="#" id="trends-show-more">Show more</a>
+
 
 					</div>
 				</div>
@@ -99,6 +106,7 @@
 			{{ encore_entry_script_tags('register') }}
 			{{ encore_entry_script_tags('swup') }}
 			{{ encore_entry_script_tags('header') }}
+			{{ encore_entry_script_tags('trends') }}
 			{% block javascripts %}{% endblock %}
 		</body>
 	</html>

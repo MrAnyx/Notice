@@ -7,8 +7,36 @@
     position: relative;
     user-select: none;
 
-    #trends-title {
-        margin: 0;
+    #trends-title-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        align-items: center;
+
+        #trends-title {
+            margin: 0;
+        }
+
+        #trends-period {
+            color: var(--soft-text);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+            transform: translateY(2px);
+
+            transition: color 0.2s ease-in-out;
+
+            &:hover {
+                color: var(--primary);
+            }
+
+            #trends-period-icon {
+                width: 14px;
+                height: 14px;
+                transform: translateY(-2px);
+            }
+        }
     }
 
     #trends-hashtags {
@@ -21,7 +49,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--light-soft);
-            padding: 16px 0;
+            padding: 14px 0;
 
             .left {
                 display: flex;
@@ -31,7 +59,7 @@
                 .name {
                     color: var(--dark-light);
                     font-weight: 500;
-                    font-size: 18px;
+                    font-size: 16px;
                 }
 
                 .popularity {
@@ -54,6 +82,19 @@
             .more {
                 color: var(--soft-text);
             }
+        }
+    }
+
+    #trends-show-more {
+        color: var(--soft-text);
+        text-decoration: none;
+        font-size: 14px;
+        margin-top: 15px;
+        text-align: right;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: var(--primary);
         }
     }
 }
