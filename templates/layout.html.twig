@@ -12,8 +12,8 @@
 		{{ encore_entry_link_tags('base') }}
 		{{ encore_entry_link_tags('swup') }}
 		{{ encore_entry_link_tags('header') }}
-		{{ encore_entry_link_tags('navbar-layout') }}
 		{{ encore_entry_link_tags('navbar') }}
+		{{ encore_entry_link_tags('trends') }}
 		{% block stylesheets %}{% endblock %}
 
 	</head>
@@ -26,7 +26,7 @@
 			</div>
 
 			<div id="header-search-bar">
-				bonjoru
+				Search
 			</div>
 
 			<div id="header-social">
@@ -67,6 +67,38 @@
 
 			<div id="page-content" class="transition-fade"> {% block body %}{% endblock %}
 				</div>
+
+
+				<div id="sidebar-trending">
+					<div id="trends-title-container">
+						<h3 id="trends-title">Current trends</h3>
+						<span id="trends-period">Last 24h
+							<i data-feather="chevron-down" id="trends-period-icon"></i>
+						</span>
+					</div>
+
+					<div id="trends-hashtags">
+
+						{% for i in 1..10 %}
+							<div class="trends-hashtag">
+								<div class="left">
+									<div class="name">#nodejs</div>
+									<div class="popularity">
+										<div class="indicator"></div>
+										97.7 threads
+									</div>
+								</div>
+
+								<i data-feather="more-horizontal" class="more"></i>
+							</div>
+						{% endfor %}
+
+						<a href="#" id="trends-show-more">Show more</a>
+
+
+					</div>
+				</div>
+
 			</div>
 
 
@@ -74,6 +106,7 @@
 			{{ encore_entry_script_tags('register') }}
 			{{ encore_entry_script_tags('swup') }}
 			{{ encore_entry_script_tags('header') }}
+			{{ encore_entry_script_tags('trends') }}
 			{% block javascripts %}{% endblock %}
 		</body>
 	</html>

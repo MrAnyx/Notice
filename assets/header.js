@@ -1,4 +1,6 @@
 import "./styles/layout/header.scss";
+import "./styles/components/NotificationDropdown.scss";
+import "./styles/components/ProfileDropdown.scss";
 
 import "tippy.js/dist/tippy.css";
 import "./styles/vendor/_tippy.scss";
@@ -15,7 +17,7 @@ tippy(document.querySelector("#notification-icon"), {
     arrow: false,
     animation: "shift-away",
     interactive: true,
-    offset: [-100, 10],
+    offset: [-100, 15],
     onShow() {
         const notificationIcon = document.querySelector("notification-icon");
         notificationIcon.enableNotificationCheck();
@@ -36,7 +38,6 @@ tippy(document.querySelector("#profile-image-container"), {
     theme: "custom",
     arrow: false,
     animation: "shift-away",
-    showOnCreate: true,
     interactive: true,
-    offset: [-55, 10],
+    offset: [-55, 5],
 });
