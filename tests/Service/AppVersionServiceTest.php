@@ -33,14 +33,4 @@ class AppVersionServiceTest extends KernelTestCase
 
         $this->assertEquals($appVersion, file_get_contents($kernel->getProjectDir() . '/VERSION'));
     }
-
-    public function testSearchByName()
-    {
-        $dog = $this->em
-            ->getRepository(Animal::class)
-            ->findOneBy(['name' => 'Dog'])
-        ;
-
-        $this->assertSame('France', $dog->getLocation());
-    }
 }
