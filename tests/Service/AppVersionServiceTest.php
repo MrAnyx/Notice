@@ -2,17 +2,13 @@
 
 namespace App\Tests\Service;
 
-use App\Entity\Animal;
 use App\Service\AppVersionService;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class AppVersionServiceTest extends KernelTestCase
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
+    private \Doctrine\ORM\EntityManager $em;
 
     protected function setUp(): void
     {
