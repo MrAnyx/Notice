@@ -107,6 +107,9 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "masterminds/html5": {
+        "version": "2.7.5"
+    },
     "monolog/monolog": {
         "version": "2.3.5"
     },
@@ -479,8 +482,8 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.24.0"
     },
-    "symfony/polyfill-php81": {
-        "version": "v1.24.0"
+    "symfony/polyfill-uuid": {
+        "version": "v1.25.0"
     },
     "symfony/process": {
         "version": "v6.0.3"
@@ -574,6 +577,9 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
+    },
+    "symfony/uid": {
+        "version": "v6.1.0"
     },
     "symfony/validator": {
         "version": "6.0",
