@@ -108,12 +108,17 @@
         ],
         "test": "./vendor/bin/pest",
         "test-parallel": "@test --parallel",
-        "test-cov": "@test  --coverage --min=80",
+        "test-cov": "@test --coverage --min=80",
         "stan-default": "vendor/bin/phpstan analyse -c phpstan.neon",
         "stan": "@stan-default --ansi --error-format=table",
         "stan-github": "@stan-default --error-format=github --quiet",
         "cs-check": "./vendor/bin/phpcs --standard=PSR12 ./src ./tests",
-        "cs-fix": "./vendor/bin/phpcbf --standard=PSR12 ./src ./tests"
+        "cs-fix": "./vendor/bin/phpcbf --standard=PSR12 ./src ./tests",
+        "check-all": [
+            "@test",
+            "@stan",
+            "@cs-check"
+        ]
     },
     "conflict": {
         "symfony/symfony": "^6.1"

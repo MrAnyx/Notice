@@ -27,7 +27,16 @@ class DatabaseBoilerplateCommand extends Command
         $isTestEnv = $input->getOption('test');
 
         $io->success(sprintf(
-            "To configure your database for the %s environment, run the following commands :\n\n php bin/console doctrine:database:drop --force --env=%s --if-exists --no-interaction\n php bin/console cache:clear --env=%s\n php bin/console doctrine:cache:clear-metadata --env=%s --no-interaction\n php bin/console doctrine:database:create --if-not-exists --env=%s --no-interaction\n php bin/console doctrine:schema:drop --force --env=%s --no-interaction\n php bin/console doctrine:migrations:migrate --env=%s --no-interaction\n php bin/console doctrine:schema:validate --env=%s --no-interaction\n php bin/console doctrine:fixtures:load --env=%s --group=%s --no-interaction",
+            "To configure your database for the %s environment, run the following commands :
+
+php bin/console doctrine:database:drop --force --env=%s --if-exists --no-interaction
+php bin/console cache:clear --env=%s
+php bin/console doctrine:cache:clear-metadata --env=%s --no-interaction
+php bin/console doctrine:database:create --if-not-exists --env=%s --no-interaction
+php bin/console doctrine:schema:drop --force --env=%s --no-interaction
+php bin/console doctrine:migrations:migrate --env=%s --no-interaction
+php bin/console doctrine:schema:validate --env=%s --no-interaction
+php bin/console doctrine:fixtures:load --env=%s --group=%s --no-interaction",
             $isTestEnv ? "test" : "dev",
             $isTestEnv ? "test" : "dev",
             $isTestEnv ? "test" : "dev",
