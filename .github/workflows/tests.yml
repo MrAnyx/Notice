@@ -66,8 +66,14 @@ jobs:
             - name: Build components
               run: npm run build
 
+            - name: Drop previous database if exists
+              run: php bin/console doctrine:database:drop --force --env=test --if-exists --no-interaction
+
+            - name: Clear cache
+              run: php bin/console cache:clear --env=test
+
             - name: Doctrine cache clear
-              run: php bin/console doctrine:cache:clear-metadata
+              run: php bin/console doctrine:cache:clear-metadata --env=test --no-interaction
 
             - name: Create database
               run: php bin/console doctrine:database:create --if-not-exists --env=test --no-interaction
