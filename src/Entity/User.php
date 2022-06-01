@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Symfony\Component\Validator\Constraints\Uuid;
+use DateTime;
+use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -33,9 +37,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private $roles;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', length: 60)]
     private $password;
 
     #[ORM\Column(type: 'string', length: 50, unique: true)]
@@ -54,7 +58,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $username;
 
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\DateTime]
     private $createdAt;
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Thread::class)]
+    private $threads;
+
+    public function __construct()
+    {
+        $this->threads = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->roles = ["ROLE_USER"];
+    }
 
     public function getId(): ?Uuid
     {
@@ -146,6 +161,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Thread>
+     */
+    public function getThreads(): Collection
+    {
+        return $this->threads;
+    }
+
+    public function addThread(Thread $thread): self
+    {
+        if (!$this->threads->contains($thread)) {
+            $this->threads[] = $thread;
+            $thread->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeThread(Thread $thread): self
+    {
+        if ($this->threads->removeElement($thread)) {
+            // set the owning side to null (unless already changed)
+            if ($thread->getAuthor() === $this) {
+                $thread->setAuthor(null);
+            }
+        }
 
         return $this;
     }
