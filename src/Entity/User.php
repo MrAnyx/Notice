@@ -5,7 +5,6 @@ namespace App\Entity;
 use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -61,14 +60,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\DateTime]
     private $createdAt;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Thread::class)]
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Thread::class, cascade:["remove"])]
     private $threads;
+
+    #[ORM\ManyToMany(targetEntity: Thread::class, mappedBy: 'likedBy', cascade:["remove"])]
+    private $likes;
 
     public function __construct()
     {
         $this->threads = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->roles = ["ROLE_USER"];
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -190,6 +193,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($thread->getAuthor() === $this) {
                 $thread->setAuthor(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Thread>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Thread $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->addLikedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Thread $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            $like->removeLikedBy($this);
         }
 
         return $this;

@@ -43,17 +43,21 @@ class Thread
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     private $parent;
 
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class, cascade:["remove"])]
     private $children;
 
     #[ORM\Column(type: 'boolean', options:["default" => false])]
     private $restricted;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likes', cascade:["remove"])]
+    private $likedBy;
 
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->restricted = false;
+        $this->likedBy = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -159,6 +163,30 @@ class Thread
     public function setRestricted(bool $restricted): self
     {
         $this->restricted = $restricted;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedBy(): Collection
+    {
+        return $this->likedBy;
+    }
+
+    public function addLikedBy(User $likedBy): self
+    {
+        if (!$this->likedBy->contains($likedBy)) {
+            $this->likedBy[] = $likedBy;
+        }
+
+        return $this;
+    }
+
+    public function removeLikedBy(User $likedBy): self
+    {
+        $this->likedBy->removeElement($likedBy);
 
         return $this;
     }

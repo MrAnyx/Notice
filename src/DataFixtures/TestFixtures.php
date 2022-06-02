@@ -126,5 +126,20 @@ class TestFixtures extends Fixture
 
         $manager->persist($comment100);
         $manager->flush();
+
+        $user1->addLike($thread10);
+        $user1->addLike($thread11);
+        $user1->addLike($thread12);
+        $user2->addLike($thread20);
+        $user2->addLike($comment10);
+        $user2->addLike($comment11);
+        $user2->addLike($comment10bis);
+        $user2->addLike($comment100);
+
+        $manager->persist($user1);
+        $manager->persist($user2);
+        $manager->persist($user2);
+        $manager->persist($user2);
+        $manager->flush();
     }
 }

@@ -28,6 +28,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
         $users = [];
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
@@ -127,6 +128,21 @@ class AppFixtures extends Fixture
         $comment100->setParent($comment10);
 
         $manager->persist($comment100);
+        $manager->flush();
+
+        $users[0]->addLike($thread10);
+        $users[0]->addLike($thread11);
+        $users[0]->addLike($thread12);
+        $users[1]->addLike($thread20);
+        $users[2]->addLike($comment10);
+        $users[2]->addLike($comment11);
+        $users[2]->addLike($comment10bis);
+        $users[3]->addLike($comment100);
+
+        $manager->persist($users[0]);
+        $manager->persist($users[1]);
+        $manager->persist($users[2]);
+        $manager->persist($users[3]);
         $manager->flush();
     }
 }
