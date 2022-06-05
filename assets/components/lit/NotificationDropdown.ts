@@ -1,9 +1,12 @@
+import type { Notification } from "../../types/types";
 import { html, LitElement } from "lit";
+import { customElement, property } from 'lit/decorators.js';
 
+@customElement("notification-dropdown")
 export default class NotificationDropdown extends LitElement {
-    static properties = {
-        notifs: {},
-    };
+    
+    @property()
+    notifs?: Array<Notification> = [];
 
     // To disable shadow dom
     createRenderRoot() {

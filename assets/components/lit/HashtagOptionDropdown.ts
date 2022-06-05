@@ -1,15 +1,12 @@
 import { html, LitElement } from "lit";
+import { customElement } from "lit/decorators.js";
 
+@customElement("hashtag-option-dropdown")
 export default class HashtagOptionDropdown extends LitElement {
-    static properties = {};
 
     // To disable shadow dom
     createRenderRoot() {
         return this;
-    }
-
-    constructor() {
-        super();
     }
 
     render() {

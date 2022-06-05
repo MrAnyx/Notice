@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "rootDir": "assets",
+        "target": "ES2016"
+    },
+    "exclude": ["node_modules", "public/build"]
+}
