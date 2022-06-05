@@ -1,17 +1,14 @@
 import { html, LitElement } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import * as feather from "feather-icons";
+import { customElement } from "lit/decorators.js";
 
+@customElement("profile-dropdown")
 export default class ProfileDropdown extends LitElement {
-    static properties = {};
 
     // To disable shadow dom
     createRenderRoot() {
         return this;
-    }
-
-    constructor() {
-        super();
     }
 
     // https://dribbble.com/shots/6746892-DailyUI-027-Dropdown

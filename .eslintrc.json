@@ -15,6 +15,7 @@
         "import/extensions": "off",
         "class-methods-use-this": "off",
         "no-useless-constructor": "off",
-        "no-console": "off"
+        "no-console": "off",
+        "no-param-reassign": "off"
     }
 }

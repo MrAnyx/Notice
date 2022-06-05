@@ -103,10 +103,18 @@
 
 
 			{{ encore_entry_script_tags('base') }}
-			{{ encore_entry_script_tags('register') }}
+			{# {{ encore_entry_script_tags('register') }} #}
 			{{ encore_entry_script_tags('swup') }}
 			{{ encore_entry_script_tags('header') }}
 			{{ encore_entry_script_tags('trends') }}
+			{# {{ encore_entry_script_tags('components') }} #}
+
+			{{ encore_entry_script_tags('HashtagOptionDropdown') }}
+			{{ encore_entry_script_tags('NotificationDropdown') }}
+			{{ encore_entry_script_tags('NotificationIcon') }}
+			{{ encore_entry_script_tags('ProfileDropdown') }}
+			{{ encore_entry_script_tags('TrendingPeriodDropdown') }}
+
 			{% block javascripts %}{% endblock %}
 		</body>
 	</html>

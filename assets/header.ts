@@ -6,6 +6,8 @@ import "tippy.js/dist/tippy.css";
 import "./styles/vendor/_tippy.scss";
 import "tippy.js/animations/shift-away.css";
 
+import NotificationIcon from "./components/lit/NotificationIcon";
+
 import tippy from "tippy.js";
 
 tippy(document.querySelector("#notification-icon"), {
@@ -19,14 +21,12 @@ tippy(document.querySelector("#notification-icon"), {
     interactive: true,
     offset: [-100, 15],
     onShow() {
-        const notificationIcon = document.querySelector("notification-icon");
+        const notificationIcon = document.querySelector<NotificationIcon>("notification-icon");
         notificationIcon.enableNotificationCheck();
-        notificationIcon.update();
     },
     onHide() {
-        const notificationIcon = document.querySelector("notification-icon");
+        const notificationIcon = document.querySelector<NotificationIcon>("notification-icon");
         notificationIcon.disableNotificationCheck();
-        notificationIcon.update();
     },
 });
 

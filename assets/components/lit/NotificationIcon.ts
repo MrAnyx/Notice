@@ -1,8 +1,9 @@
-/* eslint-disable import/extensions */
 import { css, html, LitElement } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import * as feather from "feather-icons";
+import { customElement, property } from "lit/decorators.js";
 
+@customElement("notification-icon")
 export default class NotificationIcon extends LitElement {
     static properties = {
         active: { type: Boolean },
@@ -10,6 +11,15 @@ export default class NotificationIcon extends LitElement {
         notificationFetchCallInterval: { type: Object },
     };
 
+    @property()
+    active: boolean = false;
+
+    @property()
+    hasNewNotification: boolean = false;
+
+    @property()
+    notificationFetchCallInterval?: NodeJS.Timer = null;
+    
     static styles = css`
         #notification-icon-container {
             position: relative;
@@ -88,6 +98,7 @@ export default class NotificationIcon extends LitElement {
     disableNotificationCheck() {
         this.active = false;
     }
+
 
     /**
      * Update the icon state when a click is detected

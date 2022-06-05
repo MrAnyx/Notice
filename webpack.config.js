@@ -20,12 +20,23 @@ Encore
      * Each entry will result in one JavaScript file (e.g. register.js)
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
-    .addEntry("swup", "./assets/swup.js")
-    .addEntry("base", "./assets/base.js")
-    .addEntry("register", "./assets/register.js")
-    .addEntry("header", "./assets/header.js")
-    .addEntry("navbar", "./assets/navbar.js")
-    .addEntry("trends", "./assets/trends.js")
+    .addEntry("swup", "./assets/swup.ts")
+    .addEntry("base", "./assets/base.ts")
+    // .addEntry("register", "./assets/register.ts")
+    .addEntry("header", "./assets/header.ts")
+    .addEntry("navbar", "./assets/navbar.ts")
+    .addEntry("trends", "./assets/trends.ts")
+
+    /**
+     * CUSTOM ELEMENTS
+     */
+    .addEntries({
+        HashtagOptionDropdown: "./assets/components/lit/HashtagOptionDropdown.ts",
+        NotificationDropdown: "./assets/components/lit/NotificationDropdown.ts",
+        NotificationIcon: "./assets/components/lit/NotificationIcon.ts",
+        ProfileDropdown: "./assets/components/lit/ProfileDropdown.ts",
+        TrendingPeriodDropdown: "./assets/components/lit/TrendingPeriodDropdown.ts",
+    })
 
     .enableVueLoader()
 
@@ -60,10 +71,11 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader();
+    .enableSassLoader()
 
-// uncomment if you use TypeScript
-// .enableTypeScriptLoader()
+    // uncomment if you use TypeScript
+    .enableTypeScriptLoader()
+    .enableForkedTypeScriptTypesChecking();
 
 // uncomment if you use React
 // .enableReactPreset()
