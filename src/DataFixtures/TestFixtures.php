@@ -30,6 +30,7 @@ class TestFixtures extends Fixture
         $user1->setEmail("user1@mail.com");
         $password1 = $this->hasher->hashPassword($user1, 'password');
         $user1->setPassword($password1);
+        $user1->setToken(Uuid::v4()->toRfc4122());
         $manager->persist($user1);
 
         $user2 = new User();
@@ -37,6 +38,7 @@ class TestFixtures extends Fixture
         $user2->setEmail("user2@mail.com");
         $password1 = $this->hasher->hashPassword($user2, 'password');
         $user2->setPassword($password1);
+        $user2->setToken(Uuid::v4()->toRfc4122());
         $manager->persist($user2);
 
         $manager->flush();
