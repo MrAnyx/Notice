@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Security;
 
 class TokenVerificationEventSubscriber implements EventSubscriberInterface
 {
-    const AUTHENTICATED_CONTROLLERS = [
+    private const AUTHENTICATED_CONTROLLERS = [
         \App\Controller\Api\UserController::class
     ];
 
