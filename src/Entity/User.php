@@ -72,10 +72,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Thread::class, mappedBy: 'likedBy', cascade:["remove"])]
     private $likes;
 
-    #[ORM\Column(type: 'string', length: 36)]
-    #[Groups(["public", "login"])]
-    private $token;
-
     public function __construct()
     {
         $this->threads = new ArrayCollection();
@@ -231,18 +227,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->likes->removeElement($like)) {
             $like->removeLikedBy($this);
         }
-
-        return $this;
-    }
-
-    public function getToken(): ?string
-    {
-        return $this->token;
-    }
-
-    public function setToken(string $token): self
-    {
-        $this->token = $token;
 
         return $this;
     }

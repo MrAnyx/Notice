@@ -34,7 +34,6 @@ class AppFixtures extends Fixture
             $user = new User();
             $user->setUsername($this->faker->userName());
             $user->setEmail($this->faker->email());
-            $user->setToken(Uuid::v4()->toRfc4122());
 
             $password = $this->hasher->hashPassword($user, 'password');
             $user->setPassword($password);
