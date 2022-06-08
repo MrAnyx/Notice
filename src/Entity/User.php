@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -20,6 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type:"uuid", unique:true)]
     #[ORM\GeneratedValue(strategy:"CUSTOM")]
     #[ORM\CustomIdGenerator(class:UuidGenerator::class)]
+    #[Groups(["public"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 100, unique: true)]
@@ -33,9 +35,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'Your email must be at least {{ limit }} characters long',
         maxMessage: 'Your email cannot be longer than {{ limit }} characters',
     )]
+    #[Groups(["public", "login"])]
     private $email;
 
     #[ORM\Column(type: 'json')]
+    #[Groups(["public", "login"])]
     private $roles;
 
     #[ORM\Column(type: 'string', length: 60)]
@@ -54,10 +58,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         match: false,
         message: 'Your username is invalid',
     )]
+    #[Groups(["public", "login"])]
     private $username;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\DateTime]
+    #[Groups(["public"])]
     private $createdAt;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Thread::class, cascade:["remove"])]
