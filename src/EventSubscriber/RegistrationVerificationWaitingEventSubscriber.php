@@ -34,7 +34,10 @@ class RegistrationVerificationWaitingEventSubscriber implements EventSubscriberI
     public function onKernelRequest(RequestEvent $request)
     {
         $routeName = $request->getRequest()->attributes->get('_route');
-        if ($this->authChecker->isGranted("ROLE_USER_WAITING_FOR_VERIFICATION") && !in_array($routeName, self::AVAILABLE_ROUTES)) {
+        if (
+            $this->authChecker->isGranted("ROLE_USER_WAITING_FOR_VERIFICATION") &&
+            !in_array($routeName, self::AVAILABLE_ROUTES)
+        ) {
             return new RedirectResponse($this->router->generate('auth_waiting_for_verif'));
         }
     }

@@ -29,7 +29,7 @@ class UserRepositoryTest extends KernelTestCase
 
         $this->assertSame("user1@mail.com", $user->getEmail());
         $this->assertIsArray($user->getRoles());
-        $this->assertSame("ROLE_USER", $user->getRoles()[0]);
+        $this->assertSame("ROLE_USER_WAITING_FOR_VERIFICATION", $user->getRoles()[0]);
     }
 
     public function testAdd(): void
