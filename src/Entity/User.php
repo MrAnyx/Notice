@@ -5,7 +5,7 @@ namespace App\Entity;
 use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use DateTime;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -63,9 +63,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(["public", "login"])]
     private string $username;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Groups(["public"])]
-    private readonly DateTime $createdAt;
+    private readonly DateTimeImmutable $createdAt;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Thread::class, cascade:["remove"])]
     private $threads;
@@ -79,7 +79,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->threads = new ArrayCollection();
-        $this->createdAt = new DateTime();
+        $this->createdAt = new DateTimeImmutable();
         $this->roles = ["ROLE_USER_WAITING_FOR_VERIFICATION"];
         $this->likes = new ArrayCollection();
     }
@@ -166,7 +166,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
