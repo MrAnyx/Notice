@@ -19,7 +19,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'auth_login';
 
     private UrlGeneratorInterface $urlGenerator;
 
@@ -31,8 +31,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $identifier = $request->request->get('identifier', '');
-
-        $request->getSession()->set(Security::LAST_USERNAME, $identifier);
 
         return new Passport(
             new UserBadge($identifier),

@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 // https://fosrestbundle.readthedocs.io/en/3.x/param_fetcher_listener.html
 
 #[Route('/api', name: "api_")]
-#[IsGranted("ROLE_USER")]
+#[IsGranted("ROLE_USER_FULLY_VERIFIED")]
 class UserController extends AbstractController
 {
     #[Route('/me', name: "me")]

@@ -1,4 +1,9 @@
 security:
+    role_hierarchy:
+        ROLE_USER_WAITING_FOR_VERIFICATION: ROLE_USER
+        ROLE_USER_FULLY_VERIFIED: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -21,15 +26,15 @@ security:
             custom_authenticator: App\Security\AppAuthenticator
             remember_me:
                 secret: "%kernel.secret%" # required
-                lifetime: 31536000 # 1 week in seconds
+                lifetime: 31536000 # 1 year in seconds
                 always_remember_me: true
                 samesite: strict
                 httponly: true
                 secure: true
             logout:
-                path: app_logout
+                path: auth_logout
                 # where to redirect after logout
-                target: app_login
+                target: auth_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
