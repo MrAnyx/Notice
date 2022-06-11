@@ -2,7 +2,7 @@ security:
     role_hierarchy:
         ROLE_USER_WAITING_FOR_VERIFICATION: ROLE_USER
         ROLE_USER_FULLY_VERIFIED: ROLE_USER
-        ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_USER_FULLY_VERIFIED, ROLE_ALLOWED_TO_SWITCH]
 
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
