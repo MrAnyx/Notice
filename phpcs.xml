@@ -2,9 +2,9 @@
 
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd" name="CustomStandard">
-    <description>Foo is the best bar on baz</description>
+    <description>Custom standard file for php codesniffer</description>
 
-    <!-- Include the whole PHPCS standard -->
+    <!-- Extends the PSR12 standard -->
     <rule ref="PSR12"/>
 
     <rule ref="Generic.Files.LineLength">
