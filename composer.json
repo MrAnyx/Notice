@@ -47,6 +47,7 @@
         "symfony/web-link": "6.1.*",
         "symfony/webpack-encore-bundle": "^1.14",
         "symfony/yaml": "6.1.*",
+        "symfonycasts/verify-email-bundle": "^1.10",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
@@ -114,8 +115,8 @@
         "stan-default": "vendor/bin/phpstan analyse -c phpstan.neon",
         "stan": "@stan-default --ansi --error-format=table",
         "stan-github": "@stan-default --error-format=github --quiet",
-        "cs-check": "./vendor/bin/phpcs --standard=PSR12 ./src ./tests",
-        "cs-fix": "./vendor/bin/phpcbf --standard=PSR12 ./src ./tests",
+        "cs-check": "./vendor/bin/phpcs --standard=./phpcs.xml ./src ./tests",
+        "cs-fix": "./vendor/bin/phpcbf --standard=./phpcs.xml ./src ./tests",
         "check-all": [
             "@test",
             "@stan",

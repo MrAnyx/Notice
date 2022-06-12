@@ -8,13 +8,15 @@ use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ["email", "username"], message: 'There is already an account with this username of email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -22,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue(strategy:"CUSTOM")]
     #[ORM\CustomIdGenerator(class:UuidGenerator::class)]
     #[Groups(["public"])]
-    private $id;
+    private Uuid $id;
 
     #[ORM\Column(type: 'string', length: 100, unique: true)]
     #[Assert\NotBlank]
@@ -36,14 +38,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         maxMessage: 'Your email cannot be longer than {{ limit }} characters',
     )]
     #[Groups(["public", "login"])]
-    private $email;
+    private string $email;
 
     #[ORM\Column(type: 'json')]
     #[Groups(["public", "login"])]
-    private $roles;
+    private array $roles;
 
     #[ORM\Column(type: 'string', length: 60)]
-    private $password;
+    #[Assert\NotBlank]
+    private string $password;
 
     #[ORM\Column(type: 'string', length: 50, unique: true)]
     #[Assert\NotBlank]
@@ -54,17 +57,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         maxMessage: 'Your username cannot be longer than {{ limit }} characters',
     )]
     #[Assert\Regex(
-        pattern: '/^(?=[a-zA-Z0-9._]{3,50}$)(?!.*[_.]{2})[^_.].*[^_.]$/',
-        match: false,
+        pattern: '/^(?=[a-zA-Z0-9._]{3,50}$)(?!.*[_.]{2})[^.].*[^.]$/',
         message: 'Your username is invalid',
     )]
     #[Groups(["public", "login"])]
-    private $username;
+    private string $username;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\DateTime]
     #[Groups(["public"])]
-    private $createdAt;
+    private readonly DateTimeImmutable $createdAt;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Thread::class, cascade:["remove"])]
     private $threads;
@@ -72,11 +73,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Thread::class, mappedBy: 'likedBy', cascade:["remove"])]
     private $likes;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
+
     public function __construct()
     {
         $this->threads = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
-        $this->roles = ["ROLE_USER"];
+        $this->roles = ["ROLE_USER_WAITING_FOR_VERIFICATION"];
         $this->likes = new ArrayCollection();
     }
 
@@ -114,7 +118,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER_WAITING_FOR_VERIFICATION';
 
         return array_unique($roles);
     }
@@ -162,16 +166,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
@@ -227,6 +224,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->likes->removeElement($like)) {
             $like->removeLikedBy($this);
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

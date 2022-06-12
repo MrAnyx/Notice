@@ -1,5 +1,3 @@
-{% extends 'layout.html.twig' %}
-
 {% block title %}Log in!
 {% endblock %}
 
@@ -19,7 +17,7 @@
 
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		<label for="inputIdentifier">Identifier</label>
-		<input type="text" value="{{ last_identifier }}" name="identifier" id="inputIdentifier" class="form-control" autocomplete="identifier" required autofocus>
+		<input type="text" name="identifier" id="inputIdentifier" class="form-control" autocomplete="identifier" required autofocus>
 		<label for="inputPassword">Password</label>
 		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
