@@ -27,7 +27,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Uuid $id;
 
     #[ORM\Column(type: 'string', length: 100, unique: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Your email can not be empty")]
     #[Assert\Email(
         message: 'The email {{ value }} is not a valid email.',
     )]
@@ -45,11 +45,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles;
 
     #[ORM\Column(type: 'string', length: 60)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Your password can not be empty")]
     private string $password;
 
     #[ORM\Column(type: 'string', length: 50, unique: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Your username can not be empty")]
     #[Assert\Length(
         min: 3,
         max: 50,
@@ -64,6 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $username;
 
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(DateTimeImmutable::class)]
     #[Groups(["public"])]
     private readonly DateTimeImmutable $createdAt;
 

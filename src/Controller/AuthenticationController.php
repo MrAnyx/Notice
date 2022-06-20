@@ -71,6 +71,11 @@ class AuthenticationController extends AbstractController
             $password = $request->request->get("password");
             $passwordConfirm = $request->request->get("passwordConf");
 
+            if ($password === "" || $passwordConfirm === "") {
+                $error = true;
+                $this->addFlash("info", "Your password cannot be empty");
+            }
+
             if ($password !== $passwordConfirm) {
                 $error = true;
                 $this->addFlash("info", "Passwords must match");
