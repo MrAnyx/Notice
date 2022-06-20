@@ -22,7 +22,7 @@ class Thread
     private $id;
 
     #[ORM\Column(type: 'string', length: 270)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message:"You must provide a content")]
     #[Assert\Length(
         max: 270,
         maxMessage: 'Your thread content cannot be longer than {{ limit }} characters',

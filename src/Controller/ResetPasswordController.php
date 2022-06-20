@@ -3,22 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\ChangePasswordFormType;
 use App\Repository\UserRepository;
+use Symfony\Component\Mime\Address;
+use App\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
-use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
@@ -85,8 +86,13 @@ class ResetPasswordController extends AbstractController
      * Validates and process the reset URL that the user clicked in their email.
      */
     #[Route('/reset/{token}', name: 'app_reset_password')]
-    public function reset(Request $request, UserPasswordHasherInterface $userPasswordHasher, TranslatorInterface $translator, string $token = null): Response
-    {
+    public function reset(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        TranslatorInterface $translator,
+        ValidatorInterface $validator,
+        string $token = null
+    ): Response {
         if ($token) {
             // We store the token in session and remove it from the URL, to avoid the URL being
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
@@ -121,18 +127,35 @@ class ResetPasswordController extends AbstractController
 
             $error = false;
 
+            if ($password === "" || $passwordConf === "") {
+                $error = true;
+                $this->addFlash("info", "Your password cannot be empty");
+            }
+
             if ($password !== $passwordConf) {
                 $error = true;
-                $this->addFlash("info", "Your password and the confiration must match");
+                $this->addFlash("info", "Passwords must match");
+            }
+
+            $encodedPassword = $userPasswordHasher->hashPassword(
+                $user,
+                $password
+            );
+
+            $user->setPassword($encodedPassword);
+
+            $errors = $validator->validate($user);
+
+            if (count($errors) > 0) {
+                $error = true;
+
+                /** @var ConstraintViolation $validationError */
+                foreach ($errors as $validationError) {
+                    $this->addFlash("info", $validationError->getMessage());
+                }
             }
 
             if (!$error) {
-                $encodedPassword = $userPasswordHasher->hashPassword(
-                    $user,
-                    $password
-                );
-
-                $user->setPassword($encodedPassword);
                 $this->entityManager->flush();
 
                 $this->cleanSessionAfterReset();
