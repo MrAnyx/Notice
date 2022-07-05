@@ -3,5 +3,36 @@
 @import "fonts";
 
 * {
-    font-family: "DM Sans", sans-serif;
+    box-sizing: border-box;
+    // font-family: "DM Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+        color: var(--primary-hover);
+    }
 }

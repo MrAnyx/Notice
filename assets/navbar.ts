@@ -1,1 +1,1 @@
-import "./styles/layout/navbar.scss";
+import "@/styles/layout/navbar.scss";

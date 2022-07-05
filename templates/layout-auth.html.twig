@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}{% endblock %}
+            - Notice
+        </title>
+
+        <link rel="icon" id="favicon" href="{{ asset('images/Notice-favicon.svg') }}" type="image/svg+xml">
+
+        {{ encore_entry_link_tags('base') }}
+        {{ encore_entry_link_tags('layout-auth') }}
+        {% block stylesheets %}{% endblock %}
+
+    </head>
+    <body>
+        
+        <main id="layout">
+            <div id="container">
+                <img src="{{ asset('images/Notice.svg') }}" alt="Notice logo">
+                <div id="form-container">
+                
+                    <h3 id="title">{% block formTitle %}{% endblock %}</h3>
+                    <h5 id="subtitle">{% block formSubtitle %}{% endblock %}</h5>
+
+                    {% for flash_error in app.flashes('info') %}
+                        <custom-alert dismiss type="error" message="{{ flash_error }}"></custom-alert>
+                    {% endfor %}
+
+                    {% block body %}{% endblock %}
+                </div>
+                <div id="additional">
+                    {% block additional_info %}{% endblock %}
+                </div>
+            </div>
+        </main>
+
+            {{ encore_entry_script_tags('base') }}
+            {{ encore_entry_script_tags('FormInput') }}
+            {{ encore_entry_script_tags('CustomAlert') }}
+            {% block javascripts %}{% endblock %}
+        </body>
+    </html>

@@ -1,0 +1,117 @@
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.alert {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+
+    &.fade {
+        animation: fade 0.3s linear;
+    }
+
+    .alert-indicator {
+        position: absolute;
+        width: 6px;
+        height: 100%;
+    }
+
+    .alert-container {
+        padding: 11px 11px 11px 22px;
+    }
+    &.dismissible .alert-container {
+        padding: 11px 40px 11px 22px;
+    }
+
+    .alert-container {
+        position: relative;
+
+        .alert-message {
+            font-size: 14px;
+            color: var(--text-danger);
+        }
+
+        .alert-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .alert-close {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: unset;
+            border: unset;
+            top: 19px;
+            right: 5px;
+            transform: translate(-50%, -50%);
+
+            .close-icon {
+                width: 16px;
+                height: 16px;
+                stroke-width: 2px;
+                stroke: var(--dark-light);
+            }
+        }
+    }
+
+    &.alert-error {
+        .alert-indicator {
+            background-color: var(--danger);
+        }
+        .alert-container {
+            background-color: var(--danger-transparent);
+
+            .alert-message {
+                color: var(--text-danger);
+            }
+        }
+    }
+
+    &.alert-warning {
+        .alert-indicator {
+            background-color: var(--warning);
+        }
+        .alert-container {
+            background-color: var(--warning-transparent);
+
+            .alert-message {
+                color: var(--text-warning);
+            }
+        }
+    }
+
+    &.alert-success {
+        .alert-indicator {
+            background-color: var(--success);
+        }
+        .alert-container {
+            background-color: var(--success-transparent);
+
+            .alert-message {
+                color: var(--text-success);
+            }
+        }
+    }
+
+    &.alert-info {
+        .alert-indicator {
+            background-color: var(--primary);
+        }
+        .alert-container {
+            background-color: var(--primary-transparent);
+
+            .alert-message {
+                color: var(--text-primary);
+            }
+        }
+    }
+}

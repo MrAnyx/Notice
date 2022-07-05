@@ -1,18 +1,21 @@
 {
     "editor.tabSize": 4,
-    "[javascript][vue]": {
+    "[javascript][typescript][vue]": {
         "editor.formatOnSave": false
     },
-    "[json][jsonc][yaml][css][scss][twig]": {
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "[json][jsonc][yaml][css][scss]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     },
     "[twig]": {
-        "editor.defaultFormatter": "mblode.twig-language-2",
+        "editor.defaultFormatter": "mblode.twig-language",
         "editor.formatOnSave": true
     },
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
     },
     "files.eol": "\n",
     "emeraldwalk.runonsave": {
@@ -23,5 +26,12 @@
                 "cmd": "./vendor/bin/phpcbf --standard=PSR12 ${file}"
             }
         ]
-    }
+    },
+    "files.associations": {
+        "*.html": "twig"
+    },
+    "emmet.includeLanguages": {
+        "twig": "html"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
 }

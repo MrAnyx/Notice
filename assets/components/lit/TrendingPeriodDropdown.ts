@@ -3,7 +3,6 @@ import { customElement } from "lit/decorators.js";
 
 @customElement("trending-period-dropdown")
 export default class TrendingPeriodDropdown extends LitElement {
-
     // To disable shadow dom
     createRenderRoot() {
         return this;

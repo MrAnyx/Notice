@@ -3,7 +3,6 @@ import { customElement } from "lit/decorators.js";
 
 @customElement("hashtag-option-dropdown")
 export default class HashtagOptionDropdown extends LitElement {
-
     // To disable shadow dom
     createRenderRoot() {
         return this;

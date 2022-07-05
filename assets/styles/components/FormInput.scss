@@ -1,0 +1,46 @@
+.custom-input {
+    position: relative;
+    display: block;
+
+    .prefix-icon {
+        top: 50%;
+        left: 22px;
+    }
+
+    .input-icon {
+        width: 20px;
+        height: 20px;
+        stroke-width: 2.5px;
+        stroke: var(--primary);
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
+    .password-reveal-icon {
+        top: 50%;
+        right: 8px;
+    }
+
+    input {
+        padding: 12px 10px 10px 42px;
+        width: 100%;
+        border: 2px solid var(--light-medium);
+        border-radius: 8px;
+        color: var(--dark-light);
+        transition: border 0.2s ease-in-out;
+        font-size: 14px;
+
+        &[type="password"] {
+            padding-right: 42px;
+        }
+
+        &::placeholder {
+            color: var(--light-dark);
+            user-select: none;
+        }
+
+        &:focus {
+            border: 2px solid var(--primary);
+        }
+    }
+}

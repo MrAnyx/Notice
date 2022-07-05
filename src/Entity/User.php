@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[Assert\Regex(
         pattern: '/^(?=[a-zA-Z0-9._]{3,50}$)(?!.*[_.]{2})[^.].*[^.]$/',
-        message: 'Your username is invalid',
+        message: 'Invalid username',
     )]
     #[Groups(["public", "login"])]
     private string $username;

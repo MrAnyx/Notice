@@ -1,9 +1,9 @@
-import "./styles/layout/trends.scss";
-import "./styles/components/TrendingPeriodDropdown.scss";
-import "./styles/components/HashtagOptionDropdown.scss";
+import "@/styles/layout/trends.scss";
+import "@/styles/components/TrendingPeriodDropdown.scss";
+import "@/styles/components/HashtagOptionDropdown.scss";
 
 import "tippy.js/dist/tippy.css";
-import "./styles/vendor/_tippy.scss";
+import "@/styles/vendor/_tippy.scss";
 import "tippy.js/animations/shift-away.css";
 
 import tippy from "tippy.js";

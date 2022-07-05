@@ -1,10 +1,9 @@
-import type { Notification } from "../../types/types";
 import { html, LitElement } from "lit";
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property } from "lit/decorators.js";
+import type { Notification } from "@/types/types";
 
 @customElement("notification-dropdown")
 export default class NotificationDropdown extends LitElement {
-    
     @property()
     notifs?: Array<Notification> = [];
 

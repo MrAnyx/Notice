@@ -1,28 +1,26 @@
-<!DOCTYPE html>
+{% extends 'layout-auth.html.twig' %}
 
-<title>Register</title>
+{% block title %}Register
+{% endblock %}
+
+{% block formTitle %}Sign up to Notice{% endblock %}
+{% block formSubtitle %}Lets see how Notice can help you stay informed{% endblock %}
 
 {% block body %}
-	{% for flash_error in app.flashes('info') %}
-		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-	{% endfor %}
-
-	<h1>Register</h1>
 
 	<form method="post">
+		<div class="inputs">
+			<form-input id="username" name="username" type="text" icon="user" placeholder="Choose a username"></form-input>
+			<form-input id="email" name="email" type="email" icon="mail" placeholder="Enter your email"></form-input>
+			<form-input id="password" name="password" type="password" icon="lock" placeholder="Enter your password"></form-input>
+			<form-input id="passwordConf" name="passwordConf" type="password" icon="lock" placeholder="Confirm your password"></form-input>
+		</div>
 
-		<label for="username">Username</label>
-		<input type="text" required id="username" name="username" autofocus/>
-
-		<label for="email">Email</label>
-		<input type="email" required id="email" name="email"/>
-
-		<label for="password">Password</label>
-		<input type="password" required id="password" name="password"/>
-
-		<label for="passwordConf">Password Confirmation</label>
-		<input type="password" required id="passwordConf" name="passwordConf"/>
-
-		<button type="submit" class="btn">Register</button>
+		<button class="btn btn-lg btn-primary" type="submit">Sign up</button>
 	</form>
 {% endblock %}
+
+{% block additional_info %}
+<p>Already have an account ? <a href="{{url('auth_login')}}">Sign in</a></p>
+{% endblock %}
+

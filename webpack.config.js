@@ -1,4 +1,7 @@
+const { resolve } = require("path");
+
 const Encore = require("@symfony/webpack-encore");
+const sveltePreprocess = require("svelte-preprocess");
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -20,12 +23,24 @@ Encore
      * Each entry will result in one JavaScript file (e.g. register.js)
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
+    .addEntry("registerComponents", "./assets/registerComponents.ts")
     .addEntry("swup", "./assets/swup.ts")
     .addEntry("base", "./assets/base.ts")
-    // .addEntry("register", "./assets/register.ts")
     .addEntry("header", "./assets/header.ts")
     .addEntry("navbar", "./assets/navbar.ts")
     .addEntry("trends", "./assets/trends.ts")
+
+    /**
+     * LAYOUTS
+     */
+    .addEntry("layout", "./assets/layout.ts")
+    .addEntry("layout-auth", "./assets/layout-auth.ts")
+
+    /**
+     * PAGES
+     */
+    .addEntry("login", "./assets/login.ts")
+    .addEntry("register", "./assets/register.ts")
 
     /**
      * CUSTOM ELEMENTS
@@ -36,9 +51,11 @@ Encore
         NotificationIcon: "./assets/components/lit/NotificationIcon.ts",
         ProfileDropdown: "./assets/components/lit/ProfileDropdown.ts",
         TrendingPeriodDropdown: "./assets/components/lit/TrendingPeriodDropdown.ts",
+        FormInput: "./assets/components/lit/FormInput.ts",
+        CustomAlert: "./assets/components/lit/CustomAlert.ts",
     })
 
-    .enableVueLoader()
+    // .enableVueLoader()
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -62,6 +79,31 @@ Encore
 
     .configureBabel((config) => {
         config.plugins.push("@babel/plugin-proposal-class-properties");
+    })
+
+    // .addRule({
+    //     test: /\.(html|svelte)$/,
+    //     use: [
+    //         {
+    //             loader: "svelte-loader",
+    //             options: {
+    //                 emitCss: true,
+    //                 customElement: true,
+    //                 preprocess: sveltePreprocess({}),
+    //             },
+    //         },
+    //     ],
+    // })
+    // .addRule({
+    //     // required to prevent errors from Svelte on Webpack 5+, omit on Webpack 4
+    //     test: /node_modules\/svelte\/.*\.mjs$/,
+    //     resolve: {
+    //         fullySpecified: false,
+    //     },
+    // })
+
+    .addAliases({
+        "@": resolve(__dirname, "assets/"),
     })
 
     // enables @babel/preset-env polyfills

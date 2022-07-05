@@ -1,4 +1,4 @@
-import { css, html, LitElement } from "lit";
+import { html, LitElement } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import * as feather from "feather-icons";
 import { customElement, property } from "lit/decorators.js";
@@ -11,6 +11,11 @@ export default class NotificationIcon extends LitElement {
         notificationFetchCallInterval: { type: Object },
     };
 
+    // To disable shadow dom
+    createRenderRoot() {
+        return this;
+    }
+
     @property()
     active: boolean = false;
 
@@ -19,40 +24,6 @@ export default class NotificationIcon extends LitElement {
 
     @property()
     notificationFetchCallInterval?: NodeJS.Timer = null;
-    
-    static styles = css`
-        #notification-icon-container {
-            position: relative;
-        }
-
-        #notification-icon-svg {
-            width: 20px;
-            height: 20px;
-            color: var(--light-dark);
-            transition: color 0.2s ease-in-out;
-            vertical-align: middle;
-        }
-
-        #notification-icon-svg:hover {
-            color: var(--dark-soft);
-        }
-
-        #notification-icon-svg.active {
-            fill: var(--dark-soft);
-            color: var(--dark-soft);
-        }
-
-        #notification-counter {
-            background-color: var(--success);
-            width: 10px;
-            height: 10px;
-            border-radius: 50px;
-            position: absolute;
-            top: -5px;
-            right: -2px;
-            border: 2px solid var(--light);
-        }
-    `;
 
     constructor() {
         super();
@@ -98,7 +69,6 @@ export default class NotificationIcon extends LitElement {
     disableNotificationCheck() {
         this.active = false;
     }
-
 
     /**
      * Update the icon state when a click is detected

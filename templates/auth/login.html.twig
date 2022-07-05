@@ -1,31 +1,31 @@
-{% block title %}Log in!
+{% extends 'layout-auth.html.twig' %}
+
+{% block title %}Login
 {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+{% block formTitle %}Welcome back{% endblock %}
+{% block formSubtitle %}Enter your credentials to access the platform{% endblock %}
+
 {% block body %}
+
 	<form method="post">
-		{% if error %}
-			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-		{% endif %}
+	
+		<div class="inputs">
+			<form-input id="identifier" name="identifier" type="text" icon="user" placeholder="Enter your email or username"></form-input>
+			<form-input id="password" name="password" type="password" icon="lock" placeholder="Enter your password"></form-input>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		</div>
 
-		{% if app.user %}
-			<div class="mb-3">
-				You are logged in as
-				{{ app.user.userIdentifier }},
-				<a href="{{ path('app_logout') }}">Logout</a>
-			</div>
-		{% endif %}
+		<button class="btn btn-lg btn-primary" type="submit">Sign in</button>
 
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-		<label for="inputIdentifier">Identifier</label>
-		<input type="text" name="identifier" id="inputIdentifier" class="form-control" autocomplete="identifier" required autofocus>
-		<label for="inputPassword">Password</label>
-		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-
-		<button class="btn btn-lg btn-primary" type="submit">
-			Sign in
-		</button>
+		<a id="forgot-password" href="{{url('app_forgot_password_request')}}">Forgot password</a>
 	</form>
+{% endblock %}
+
+{% block additional_info %}
+<p>Don't have an account yet ? <a href="{{url('auth_register')}}">Sign up</a></p>
 {% endblock %}

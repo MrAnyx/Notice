@@ -1,14 +1,14 @@
-import "./styles/layout/header.scss";
-import "./styles/components/NotificationDropdown.scss";
-import "./styles/components/ProfileDropdown.scss";
+import "@/styles/layout/header.scss";
+import "@/styles/components/NotificationDropdown.scss";
+import "@/styles/components/ProfileDropdown.scss";
+import "@/styles/components/NotificationIcon.scss";
 
 import "tippy.js/dist/tippy.css";
-import "./styles/vendor/_tippy.scss";
+import "@/styles/vendor/_tippy.scss";
 import "tippy.js/animations/shift-away.css";
 
-import NotificationIcon from "./components/lit/NotificationIcon";
-
 import tippy from "tippy.js";
+import NotificationIcon from "@/components/lit/NotificationIcon";
 
 tippy(document.querySelector("#notification-icon"), {
     content: "<notification-dropdown></notification-dropdown>",

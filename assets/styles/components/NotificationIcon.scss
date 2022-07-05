@@ -1,0 +1,31 @@
+#notification-icon-container {
+    position: relative;
+}
+
+#notification-icon-svg {
+    width: 20px;
+    height: 20px;
+    color: var(--light-dark);
+    transition: color 0.2s ease-in-out;
+    vertical-align: middle;
+}
+
+#notification-icon-svg:hover {
+    color: var(--dark-soft);
+}
+
+#notification-icon-svg.active {
+    fill: var(--dark-soft);
+    color: var(--dark-soft);
+}
+
+#notification-counter {
+    background-color: var(--success);
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    position: absolute;
+    top: -5px;
+    right: -2px;
+    border: 2px solid var(--light);
+}

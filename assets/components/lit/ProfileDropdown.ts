@@ -5,7 +5,6 @@ import { customElement } from "lit/decorators.js";
 
 @customElement("profile-dropdown")
 export default class ProfileDropdown extends LitElement {
-
     // To disable shadow dom
     createRenderRoot() {
         return this;

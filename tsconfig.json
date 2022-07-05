@@ -1,10 +1,21 @@
 {
+    "extends": "./node_modules/@tsconfig/svelte/tsconfig.json",
     "compilerOptions": {
-        "module": "CommonJS",
+        "module": "ESNext",
         "removeComments": true,
         "experimentalDecorators": true,
+        "esModuleInterop": true,
         "rootDir": "assets",
-        "target": "ES2016"
+        "forceConsistentCasingInFileNames": true,
+        "target": "ES2016",
+        "baseUrl": ".",
+        "isolatedModules": false,
+        "importsNotUsedAsValues": "remove",
+        "paths": {
+            "@/*": ["assets/*"]
+        }
     },
+    "files": ["shims.d.ts"],
+    "include": ["assets/**/*", "assets/components/vue/**/*"],
     "exclude": ["node_modules", "public/build"]
 }
