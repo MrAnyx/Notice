@@ -24,8 +24,10 @@
                     <h3 id="title">{% block formTitle %}{% endblock %}</h3>
                     <h5 id="subtitle">{% block formSubtitle %}{% endblock %}</h5>
 
-                    {% for flash_error in app.flashes('info') %}
-                        <custom-alert dismiss type="error" message="{{ flash_error }}"></custom-alert>
+                    {% for index, flash_error in app.flashes('info') %}
+                        {% if index == 0 %}
+                            <custom-alert dismiss type="error" message="{{ flash_error }}"></custom-alert>
+                        {% endif %}
                     {% endfor %}
 
                     {% block body %}{% endblock %}

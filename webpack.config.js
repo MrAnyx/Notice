@@ -39,6 +39,7 @@ Encore
     /**
      * PAGES
      */
+    .addEntry("verification", "./assets/verification.ts")
     .addEntry("login", "./assets/login.ts")
     .addEntry("register", "./assets/register.ts")
 

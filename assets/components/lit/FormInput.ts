@@ -21,6 +21,9 @@ export default class FormInput extends LitElement {
     @property()
     name: string;
 
+    @property()
+    help: string;
+
     @state()
     reveal: boolean = false;
 
@@ -66,11 +69,12 @@ export default class FormInput extends LitElement {
 
     render() {
         return html`
-            <div class="custom-input" id="${this.id}">
+            <div class="custom-input">
                 ${unsafeHTML(feather.icons[this.icon].toSvg({ class: "input-icon prefix-icon" }))}
                 <input type="${this.currentType}" name="${this.name}" value="${this.value}" placeholder="${this.placeholder}" required />
                 ${this.type === "password" ? this.renderPasswordRevealToggler() : ""}
             </div>
+            <div class="input-help-message">${this.help}</div>
         `;
     }
 }

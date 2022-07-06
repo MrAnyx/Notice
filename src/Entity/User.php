@@ -57,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         maxMessage: 'Your username cannot be longer than {{ limit }} characters',
     )]
     #[Assert\Regex(
-        pattern: '/^(?=[a-zA-Z0-9._]{3,50}$)(?!.*[_.]{2})[^.].*[^.]$/',
+        pattern: '/^(?=[a-zA-Z0-9._])(?!.*[_.]{2})[^.].*[^.]$/',
         message: 'Invalid username',
     )]
     #[Groups(["public", "login"])]
@@ -81,7 +81,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->threads = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
-        $this->roles = ["ROLE_USER_WAITING_FOR_VERIFICATION"];
+        $this->roles = ["ROLE_USER"];
         $this->likes = new ArrayCollection();
     }
 
@@ -119,7 +119,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER_WAITING_FOR_VERIFICATION';
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }

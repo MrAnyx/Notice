@@ -1,0 +1,14 @@
+{% extends 'layout-auth.html.twig' %}
+
+{% block title %}Verify your email{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('verification') }}
+{% endblock %}
+
+{% block formTitle %}Email sent{% endblock %}
+{% block formSubtitle %}Check your email inbox to verify your account{% endblock %}
+
+{% block body %}
+	{{email}}
+{% endblock %}
