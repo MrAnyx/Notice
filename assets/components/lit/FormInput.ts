@@ -71,7 +71,14 @@ export default class FormInput extends LitElement {
         return html`
             <div class="custom-input">
                 ${unsafeHTML(feather.icons[this.icon].toSvg({ class: "input-icon prefix-icon" }))}
-                <input type="${this.currentType}" name="${this.name}" value="${this.value}" placeholder="${this.placeholder}" required />
+                <input
+                    type="${this.currentType}"
+                    data-input-type="${this.type}"
+                    name="${this.name}"
+                    value="${this.value}"
+                    placeholder="${this.placeholder}"
+                    required
+                />
                 ${this.type === "password" ? this.renderPasswordRevealToggler() : ""}
             </div>
             <div class="input-help-message">${this.help}</div>

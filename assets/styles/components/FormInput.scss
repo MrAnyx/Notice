@@ -30,8 +30,8 @@
         transition: border 0.2s ease-in-out;
         font-size: 14px;
 
-        &[type="password"] {
-            padding-right: 42px;
+        &[data-input-type="password"] {
+            padding-right: 52px;
         }
 
         &::placeholder {

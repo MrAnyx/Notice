@@ -3,13 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use PhpParser\Builder\Method;
 use App\Security\EmailVerifier;
 use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +34,7 @@ class AuthenticationController extends AbstractController
     #[Route(path: '/login', name: 'login', methods: ["GET", "POST"])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser()) {
+        if ($this->isGranted("ROLE_USER_FULLY_VERIFIED")) {
             return $this->redirectToRoute('app_feed');
         }
 
@@ -64,7 +62,7 @@ class AuthenticationController extends AbstractController
         AppAuthenticator $authenticator,
     ): Response {
 
-        if ($this->getUser()) {
+        if ($this->isGranted("ROLE_USER_FULLY_VERIFIED")) {
             return $this->redirectToRoute("app_feed");
         }
 
@@ -89,6 +87,7 @@ class AuthenticationController extends AbstractController
 
             $user->setEmail($email)
                  ->setUsername($username)
+                 ->setRoles(["ROLE_USER_WAITING_FOR_VERIFICATION"])
                  ->setPassword(
                      $userPasswordHasher->hashPassword(
                          $user,
@@ -144,7 +143,7 @@ class AuthenticationController extends AbstractController
         UserRepository $userRepository,
     ): Response {
 
-        if ($this->getUser() && !$this->isGranted("ROLE_USER_WAITING_FOR_VERIFICATION")) {
+        if ($this->isGranted("ROLE_USER_FULLY_VERIFIED")) {
             return $this->redirectToRoute("app_feed");
         }
 

@@ -13,11 +13,13 @@ class RegistrationVerificationWaitingEventSubscriber implements EventSubscriberI
 {
     private const AVAILABLE_ROUTES = [
         "auth_waiting_for_verif",
-        "auth_verify_email"
+        "auth_verify_email",
+        "api_verify_pending_send"
     ];
 
     private $authChecker;
     private $router;
+    private $security;
 
     public function __construct(AuthorizationCheckerInterface $authChecker, UrlGeneratorInterface $router, Security $security)
     {
@@ -37,8 +39,7 @@ class RegistrationVerificationWaitingEventSubscriber implements EventSubscriberI
     {
         $routeName = $request->getRequest()->attributes->get('_route');
         if (
-            $this->authChecker->isGranted("ROLE_USER_WAITING_FOR_VERIFICATION") &&
-            !in_array($routeName, self::AVAILABLE_ROUTES)
+            $this->authChecker->isGranted("ROLE_USER_WAITING_FOR_VERIFICATION") && !in_array($routeName, self::AVAILABLE_ROUTES)
         ) {
             return $request->setResponse(new RedirectResponse($this->router->generate('auth_waiting_for_verif')));
         }

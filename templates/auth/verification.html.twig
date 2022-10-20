@@ -10,5 +10,10 @@
 {% block formSubtitle %}Check your email inbox to verify your account{% endblock %}
 
 {% block body %}
-	{{email}}
+    <p id="verify-email-message">Thanks for joining Notice! We just sent you a verification link by email. Click the link to fully use the platform.</p>
+    <p id="resend-link">Didn't receive the email? Click <a>here</a> to resend it.</p>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('verification') }}
 {% endblock %}
